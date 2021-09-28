@@ -25,9 +25,8 @@ public class Curriculo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private long idusuario;
-    private long idendereco;
     private String nome;
+    private String cpf;
     private String datanascimento;
     private String telefone;
     private String sobre;
@@ -37,12 +36,10 @@ public class Curriculo implements Serializable {
     private int quantidadevagas;
 
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne
     private Usuario usuario;
 
     @OneToOne
     private Endereco endereco;
 
 }
-
-// VAMOS PRECISAR DE AJUDA COM AS LIGAÇÕES ENTRE AS CLASSES NO BANCO

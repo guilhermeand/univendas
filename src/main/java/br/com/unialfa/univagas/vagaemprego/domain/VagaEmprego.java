@@ -23,8 +23,6 @@ public class VagaEmprego implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private long idempresa;
-    private  long idcurriculo;
     private String descricao;
     private String salario;
     private String cargaHoraria;
