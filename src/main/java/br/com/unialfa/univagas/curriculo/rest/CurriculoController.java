@@ -7,9 +7,8 @@ import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 @RepositoryRestController
-@RequestMapping(path = "pacientes")
+@RequestMapping(path = "curriculos")
 public class CurriculoController {
 
     private final CurriculoService service;

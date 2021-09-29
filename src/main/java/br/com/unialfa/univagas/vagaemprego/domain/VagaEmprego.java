@@ -25,9 +25,60 @@ public class VagaEmprego implements Serializable {
     private long id;
     private String descricao;
     private String salario;
-    private String cargaHoraria;
+    private String cargahoraria;
     private String beneficios;
     private Boolean isFinalizado;
+
+    // CONSTRUCTOR public Usuario() {
+    //}
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getSalario() {
+        return salario;
+    }
+
+    public void setSalario(String salario) {
+        this.salario = salario;
+    }
+
+    public String getCargaHoraria() {
+        return cargahoraria;
+    }
+
+    public void setCargaHoraria(String cargahoraria) {
+        this.cargahoraria = cargahoraria;
+    }
+
+    public String getBeneficios() {
+        return beneficios;
+    }
+
+    public void setBeneficios(String beneficios) {
+        this.beneficios = beneficios;
+    }
+
+    public Boolean getIsFinalizado() {
+        return isFinalizado;
+    }
+
+    public void setIsFinalizado(boolean isFinalizado) {
+        this.isFinalizado = true;
+    }
 
     @OneToOne
     private Empresa empresa;
