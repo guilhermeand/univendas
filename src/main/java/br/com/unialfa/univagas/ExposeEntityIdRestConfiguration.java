@@ -1,7 +1,7 @@
 package br.com.unialfa.univagas;
 
 
-import br.com.unialfa.univagas.curriculo.domain.Curriculo;
+import br.com.unialfa.univagas.candidato.domain.Curriculo;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.stereotype.Component;

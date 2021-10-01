@@ -1,18 +1,9 @@
 package br.com.unialfa.univagas;
 
-import br.com.unialfa.univagas.endereco.domain.Endereco;
-import br.com.unialfa.univagas.endereco.repository.EnderecoRepository;
-import br.com.unialfa.univagas.curriculo.domain.Curriculo;
-import br.com.unialfa.univagas.curriculo.repository.CurriculoRepository;
-import br.com.unialfa.univagas.usuario.domain.Usuario;
-import br.com.unialfa.univagas.usuario.repository.UsuarioRepository;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.time.LocalDate;
 
 @SpringBootApplication
 public class UnivagasApplication {

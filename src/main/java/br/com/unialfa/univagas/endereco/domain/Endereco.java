@@ -1,6 +1,6 @@
 package br.com.unialfa.univagas.endereco.domain;
 
-import br.com.unialfa.univagas.curriculo.domain.Curriculo;
+import br.com.unialfa.univagas.candidato.domain.Curriculo;
 import lombok.*;
 import javax.persistence.*;
 import javax.persistence.OneToOne;

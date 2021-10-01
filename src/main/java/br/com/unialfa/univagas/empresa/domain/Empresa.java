@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.persistence.OneToOne;
 import br.com.unialfa.univagas.endereco.domain.Endereco;
+import br.com.unialfa.univagas.usuario.domain.Usuario;
 import lombok.*;
 
 //import java.util.list;
@@ -26,10 +27,22 @@ public class Empresa implements Serializable {
     private String razaosocial;
     private String nomefantasia;
     private String cnpj;
+    @OneToOne
+    private Endereco endereco;
+    @OneToOne
+    private Usuario usuario;
 
+    public Empresa() {
+    }
 
-    // CONSTRUCTOR public Empresa() {
-    //}
+    public Empresa(long id, String razaosocial, String nomefantasia, String cnpj, Endereco endereco, Usuario usuario) {
+        this.id = id;
+        this.razaosocial = razaosocial;
+        this.nomefantasia = nomefantasia;
+        this.cnpj = cnpj;
+        this.endereco = endereco;
+        this.usuario = usuario;
+    }
 
     public long getId() {
         return id;
@@ -39,20 +52,20 @@ public class Empresa implements Serializable {
         this.id = id;
     }
 
-    public String getRazaoSocial() {
+    public String getRazaosocial() {
         return razaosocial;
     }
 
-    public void setRazaoSocial(String razaoSocial) {
-        this.razaosocial = razaoSocial;
+    public void setRazaosocial(String razaosocial) {
+        this.razaosocial = razaosocial;
     }
 
-    public String getNomeFantasia() {
+    public String getNomefantasia() {
         return nomefantasia;
     }
 
-    public void setNomeFantasia(String nomeFantasia) {
-        this.nomefantasia = nomeFantasia;
+    public void setNomefantasia(String nomefantasia) {
+        this.nomefantasia = nomefantasia;
     }
 
     public String getCnpj() {
@@ -63,6 +76,19 @@ public class Empresa implements Serializable {
         this.cnpj = cnpj;
     }
 
-    @OneToOne
-    private Endereco endereco;
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }
