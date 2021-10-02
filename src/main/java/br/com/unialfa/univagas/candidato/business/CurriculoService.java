@@ -26,23 +26,11 @@ public class CurriculoService {
 
 
     public Curriculo save(Curriculo curriculo){
-        boolean cpfValido = false;
-        cpfValido = validaCPF(curriculo.getCpf());
-        if(cpfValido) {
-            return curriculoRepository.save(curriculo);
-        }else{
-            return null;
-        }
+        return curriculoRepository.save(curriculo);
     }
 
     public Curriculo update(Curriculo curriculo){
-        boolean cpfValido = false;
-        cpfValido = validaCPF(curriculo.getCpf());
-        if(cpfValido) {
-            return curriculoRepository.save(curriculo);
-        }else{
-            return null;
-        }
+        return curriculoRepository.save(curriculo);
     }
 
 

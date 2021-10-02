@@ -3,86 +3,62 @@ package br.com.unialfa.univagas.empresa.domain;
 import br.com.unialfa.univagas.candidato.domain.Curriculo;
 import br.com.unialfa.univagas.empresa.domain.Empresa;
 import javax.persistence.OneToOne;
+import java.awt.print.Book;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.*;
 import lombok.*;
 //import java.util.list;
 
 //anotations lombok
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@EqualsAndHashCode
 
 //anotations jpa
 @Entity
-
+@Table(name = "emprego")
 public class Emprego  extends Vaga implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    private String descricao;
-    private String salario;
-    private String cargahoraria;
-    private String beneficios;
-    private Boolean isFinalizado;
 
-    // CONSTRUCTOR public Usuario() {
-    //}
+    private String numero_documento;
+    private Boolean clt;
+    private Boolean pj;
 
-    public long getId() {
-        return id;
+
+    public Emprego() {
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public Emprego(long id, Empresa empresa, String descricao, String salario, String carga_horaria, String beneficios, Boolean isFinalizada, Date termina_em, String numero_documento, Boolean clt, Boolean pj) {
+        super(id, empresa, descricao, salario, carga_horaria, beneficios, isFinalizada, termina_em);
+        this.numero_documento = numero_documento;
+        this.clt = clt;
+        this.pj = pj;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNumero_documento() {
+        return numero_documento;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNumero_documento(String numero_documento) {
+        this.numero_documento = numero_documento;
     }
 
-    public String getSalario() {
-        return salario;
+    public Boolean getClt() {
+        return clt;
     }
 
-    public void setSalario(String salario) {
-        this.salario = salario;
+    public void setClt(Boolean clt) {
+        this.clt = clt;
     }
 
-    public String getCargaHoraria() {
-        return cargahoraria;
+    public Boolean getPj() {
+        return pj;
     }
 
-    public void setCargaHoraria(String cargahoraria) {
-        this.cargahoraria = cargahoraria;
+    public void setPj(Boolean pj) {
+        this.pj = pj;
     }
-
-    public String getBeneficios() {
-        return beneficios;
-    }
-
-    public void setBeneficios(String beneficios) {
-        this.beneficios = beneficios;
-    }
-
-    public Boolean getIsFinalizado() {
-        return isFinalizado;
-    }
-
-    public void setIsFinalizado(boolean isFinalizado) {
-        this.isFinalizado = true;
-    }
-
-    @OneToOne
-    private Empresa empresa;
-
-    @OneToOne
-    private Curriculo curriculo;
 }

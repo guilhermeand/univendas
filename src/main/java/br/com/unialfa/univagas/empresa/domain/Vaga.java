@@ -1,13 +1,12 @@
 package br.com.unialfa.univagas.empresa.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Vaga {
-
+@Entity
+@Table(name = "vaga")
+public abstract class Vaga  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

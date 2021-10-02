@@ -7,14 +7,12 @@ import java.io.Serializable;
 //import java.util.list;
 
 //anotations lombok
-@Getter
-@Setter
-@EqualsAndHashCode
+//@Getter
+//@Setter
+//@EqualsAndHashCode
 //anotations jpa
 @Entity
-
-
-
+@Table(name = "usuario")
 public class Usuario implements Serializable{
 
     @Id

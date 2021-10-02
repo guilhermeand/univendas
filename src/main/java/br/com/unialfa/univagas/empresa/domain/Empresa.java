@@ -10,15 +10,15 @@ import lombok.*;
 //import java.util.list;
 
 //anotations lombok
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@EqualsAndHashCode
 
 //anotations jpa
 @Entity
-
+@Table(name = "empresa")
 public class Empresa implements Serializable {
 
     @Id

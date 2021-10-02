@@ -11,11 +11,11 @@ import java.io.Serializable;
 
 
 //anotations lombok
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@EqualsAndHashCode
 
 //anotation jpa
 @Entity

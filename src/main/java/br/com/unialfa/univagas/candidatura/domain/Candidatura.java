@@ -6,6 +6,8 @@ import br.com.unialfa.univagas.empresa.domain.Vaga;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "candidatura")
 public class Candidatura {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

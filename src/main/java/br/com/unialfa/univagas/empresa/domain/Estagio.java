@@ -2,113 +2,58 @@ package br.com.unialfa.univagas.empresa.domain;
 
 
 import javax.persistence.*;
-import br.com.unialfa.univagas.candidato.domain.Curriculo;
-import br.com.unialfa.univagas.empresa.domain.Empresa;
-import lombok.*;
+
 import java.io.Serializable;
-import javax.persistence.OneToOne;
+import java.util.Date;
 //import java.util.list;
 
 //anotations lombok
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@EqualsAndHashCode
 
 //anotations jpa
 @Entity
+@Table(name = "estagio")
+public class Estagio extends Vaga implements Serializable {
 
+     private String data_inicio;
+     private String data_final;
+     private String ies;
 
+     public Estagio() {
+     }
 
-public class Estagio extends Vaga implements Serializable  {
+     public Estagio(long id, Empresa empresa, String descricao, String salario, String carga_horaria, String beneficios, Boolean isFinalizada, Date termina_em, String data_inicio, String data_final, String ies) {
+          super(id, empresa, descricao, salario, carga_horaria, beneficios, isFinalizada, termina_em);
+          this.data_inicio = data_inicio;
+          this.data_final = data_final;
+          this.ies = ies;
+     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    private String descricao;
-    private String salario;
-    private String cargahoraria;
-    private String beneficios;
-    private String datainicio;
-    private String datafim;
-    private Boolean isFinalizado;
+     public String getData_inicio() {
+          return data_inicio;
+     }
 
-    // CONSTRUCTOR public Usuario() {
-    //}
+     public void setData_inicio(String data_inicio) {
+          this.data_inicio = data_inicio;
+     }
 
-    public long getId() {
-        return id;
-    }
+     public String getData_final() {
+          return data_final;
+     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+     public void setData_final(String data_final) {
+          this.data_final = data_final;
+     }
 
-    public String getDescricao() {
-        return descricao;
-    }
+     public String getIes() {
+          return ies;
+     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getSalario() {
-        return salario;
-    }
-
-    public void setSalario(String salario) {
-        this.salario = salario;
-    }
-
-    public String getCargaHoraria() {
-        return cargahoraria;
-    }
-
-    public void setCargaHoraria(String cargahoraria) {
-        this.cargahoraria = cargahoraria;
-    }
-
-    public String getBeneficios() {
-        return beneficios;
-    }
-
-    public void setBeneficios(String beneficios) {
-        this.beneficios = beneficios;
-    }
-
-    public String getDataInicio() {
-        return datainicio;
-    }
-
-    public void setDataInicio(String datainicio) {
-        this.datainicio = datainicio;
-    }
-
-    public String getDataFim() {
-        return datafim;
-    }
-
-    public void setDataFim(String datafim) {
-        this.datafim = datafim;
-    }
-
-    public Boolean getIsFinalizado() {
-        return isFinalizado;
-    }
-
-    public void setIsFinalizado(boolean isFinalizado) {
-        this.isFinalizado = true;
-    }
-
-
-
-
-
-    @OneToOne
-    private Empresa empresa;
-
-    @OneToOne
-    private Curriculo curriculo;
-
+     public void setIes(String ies) {
+          this.ies = ies;
+     }
 }
