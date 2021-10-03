@@ -1,9 +1,12 @@
 package br.com.unialfa.univagas.empresa.domain;
 
+import br.com.unialfa.univagas.candidatura.domain.Candidatura;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 //import java.util.list;
 
 //anotations lombok
@@ -27,8 +30,8 @@ public class Emprego  extends Vaga implements Serializable {
     public Emprego() {
     }
 
-    public Emprego(long id, Empresa empresa, String descricao, String salario, String carga_horaria, String beneficios, Boolean isFinalizada, Date termina_em, String numero_documento, Boolean clt, Boolean pj) {
-        super(id, empresa, descricao, salario, carga_horaria, beneficios, isFinalizada, termina_em);
+    public Emprego(long id, Empresa empresa, String descricao, String salario, String carga_horaria, String beneficios, Date termina_em, Boolean isFinalizada, Boolean isSupervisionada, Boolean isAprovada, Boolean isVisivel, List<Candidatura> candidaturas, String numero_documento, Boolean clt, Boolean pj) {
+        super(id, empresa, descricao, salario, carga_horaria, beneficios, termina_em, isFinalizada, isSupervisionada, isAprovada, isVisivel, candidaturas);
         this.numero_documento = numero_documento;
         this.clt = clt;
         this.pj = pj;

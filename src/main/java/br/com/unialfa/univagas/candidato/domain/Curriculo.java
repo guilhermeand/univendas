@@ -1,9 +1,14 @@
 package br.com.unialfa.univagas.candidato.domain;
 
 
+import br.com.unialfa.univagas.candidatura.domain.Candidatura;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.io.Serializable;
-
+import java.util.List;
 
 
 //anotations lombok
@@ -15,19 +20,21 @@ import java.io.Serializable;
 
 //anotation jpa
 @Entity
-
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Curriculo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="candidato_id",nullable = false)
     private Candidato candidato;
     private String telefone;
     private String sobre;
     private String experiencia;
     private Boolean status;
     private Boolean estudante;
+
 
     public Curriculo() {
     }

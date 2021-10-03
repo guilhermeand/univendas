@@ -27,6 +27,7 @@ public class Empresa implements Serializable {
     private String nomefantasia;
     private String cnpj;
     @OneToOne
+    @JoinColumn(name = "endereco_id")
     private Endereco endereco;
     @OneToOne
     private Usuario usuario;

@@ -1,10 +1,13 @@
 package br.com.unialfa.univagas.empresa.domain;
 
 
+import br.com.unialfa.univagas.candidatura.domain.Candidatura;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 //import java.util.list;
 
 //anotations lombok
@@ -26,8 +29,8 @@ public class Estagio extends Vaga implements Serializable {
      public Estagio() {
      }
 
-     public Estagio(long id, Empresa empresa, String descricao, String salario, String carga_horaria, String beneficios, Boolean isFinalizada, Date termina_em, String data_inicio, String data_final, String ies) {
-          super(id, empresa, descricao, salario, carga_horaria, beneficios, isFinalizada, termina_em);
+     public Estagio(long id, Empresa empresa, String descricao, String salario, String carga_horaria, String beneficios, Date termina_em, Boolean isFinalizada, Boolean isSupervisionada, Boolean isAprovada, Boolean isVisivel, List<Candidatura> candidaturas, String data_inicio, String data_final, String ies) {
+          super(id, empresa, descricao, salario, carga_horaria, beneficios, termina_em, isFinalizada, isSupervisionada, isAprovada, isVisivel, candidaturas);
           this.data_inicio = data_inicio;
           this.data_final = data_final;
           this.ies = ies;

@@ -18,9 +18,9 @@ public class Usuario implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @NotNull
+    @JoinColumn(unique = true,nullable = false)
     private String  email;
-    @NotNull
+    @JoinColumn(nullable= false)
     private String senha;
 
     public Usuario() {

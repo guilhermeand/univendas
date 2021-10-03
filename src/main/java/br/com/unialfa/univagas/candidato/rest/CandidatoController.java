@@ -40,7 +40,7 @@ public class CandidatoController {
     @PostMapping(path = "/usuario/{usuario_id}/endereco/{endereco_id}/save")
     public @ResponseBody
     ResponseEntity<?> save(@RequestBody Candidato candidato,@PathVariable Long usuario_id,@PathVariable Long endereco_id){
-
+        if(candidatoService.validaCPF(candidato.getCpf())) return ResponseEntity.status(400).body("cpf invalido");
         candidato = candidatoService.save(endereco_id,usuario_id,candidato);
         if(candidato != null) {
             return ResponseEntity.ok(candidato);

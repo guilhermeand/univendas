@@ -49,7 +49,8 @@ public class EmpresaService {
         if(candidatoCheck.isEmpty()) return null;
         Empresa candidatoUpdate = candidatoCheck.get();
         if(endereco_id != null) {
-            candidatoUpdate.setEndereco(enderecoService.findOneById(endereco_id).get());
+            Optional<Endereco> endereco = enderecoService.findOneById(endereco_id);
+            candidatoUpdate.setEndereco(endereco.get());
         };
         if(empresa.getCnpj() != null) candidatoUpdate.setCnpj(empresa.getCnpj());
         if(empresa.getEndereco() != null) candidatoUpdate.setEndereco(empresa.getEndereco());
@@ -66,4 +67,5 @@ public class EmpresaService {
             return (ResponseEntity<?>) ResponseEntity.status(500);
         }
     }
+
 }

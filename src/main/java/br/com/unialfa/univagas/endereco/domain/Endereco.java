@@ -1,5 +1,8 @@
 package br.com.unialfa.univagas.endereco.domain;
 
+import br.com.unialfa.univagas.candidato.domain.Candidato;
+import br.com.unialfa.univagas.empresa.domain.Empresa;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -25,6 +28,10 @@ public class Endereco implements Serializable {
     private String estado;
     private String pais;
     private String cep;
+    @OneToOne(mappedBy = "endereco")
+    private Empresa empresa;
+    @OneToOne(mappedBy = "endereco")
+    private Candidato candidato;
 
     public Endereco() {
     }

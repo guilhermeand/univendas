@@ -61,4 +61,9 @@ public class EmpregoService {
             return (ResponseEntity<?>) ResponseEntity.status(500);
         }
     }
+    public Emprego save(Emprego emprego){
+        return empregoRepository.save(emprego);
+    }
+
+
 }
