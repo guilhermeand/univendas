@@ -1,8 +1,8 @@
 package br.com.unialfa.univagas.usuario.domain;
 
-import javax.persistence.*;
+import com.sun.istack.NotNull;
 
-import lombok.*;
+import javax.persistence.*;
 import java.io.Serializable;
 //import java.util.list;
 
@@ -18,7 +18,9 @@ public class Usuario implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotNull
     private String  email;
+    @NotNull
     private String senha;
 
     public Usuario() {

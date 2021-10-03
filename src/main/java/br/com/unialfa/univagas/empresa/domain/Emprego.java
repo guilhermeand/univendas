@@ -1,13 +1,9 @@
 package br.com.unialfa.univagas.empresa.domain;
 
-import br.com.unialfa.univagas.candidato.domain.Curriculo;
-import br.com.unialfa.univagas.empresa.domain.Empresa;
-import javax.persistence.OneToOne;
-import java.awt.print.Book;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
-import lombok.*;
 //import java.util.list;
 
 //anotations lombok

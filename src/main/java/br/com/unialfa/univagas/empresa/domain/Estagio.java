@@ -1,8 +1,8 @@
 package br.com.unialfa.univagas.empresa.domain;
 
 
-import javax.persistence.*;
-
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 //import java.util.list;

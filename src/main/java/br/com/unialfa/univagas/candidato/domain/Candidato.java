@@ -2,18 +2,21 @@ package br.com.unialfa.univagas.candidato.domain;
 
 import br.com.unialfa.univagas.endereco.domain.Endereco;
 import br.com.unialfa.univagas.usuario.domain.Usuario;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Optional;
 
 @Entity
 public class Candidato implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @NotNull
     @OneToOne
     private Usuario usuario;
+    @NotNull
     @OneToOne
     private Endereco endereco;
     private String cpf;

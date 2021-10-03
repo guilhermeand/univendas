@@ -30,7 +30,7 @@ public class UsuarioController {
     @GetMapping(path = "/{id}")
     public @ResponseBody
     ResponseEntity<?> findOne(@PathVariable(name = "id") Long id){
-        Optional<Optional<Usuario>> usuario = usuarioService.finOneById(id);
+        Optional<Usuario> usuario = usuarioService.findOneById(id);
         if(usuario != null) {
             return ResponseEntity.ok(usuario);
         }else{

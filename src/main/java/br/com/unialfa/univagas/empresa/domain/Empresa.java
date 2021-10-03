@@ -1,11 +1,10 @@
 package br.com.unialfa.univagas.empresa.domain;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import javax.persistence.OneToOne;
 import br.com.unialfa.univagas.endereco.domain.Endereco;
 import br.com.unialfa.univagas.usuario.domain.Usuario;
-import lombok.*;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 //import java.util.list;
 

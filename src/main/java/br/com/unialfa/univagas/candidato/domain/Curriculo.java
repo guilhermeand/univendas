@@ -1,11 +1,7 @@
 package br.com.unialfa.univagas.candidato.domain;
 
 
-import br.com.unialfa.univagas.endereco.domain.Endereco;
-import lombok.*;
-import br.com.unialfa.univagas.usuario.domain.Usuario;
 import javax.persistence.*;
-import javax.persistence.OneToOne;
 import java.io.Serializable;
 
 

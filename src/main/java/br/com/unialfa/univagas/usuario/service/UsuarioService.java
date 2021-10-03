@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+
 @Service
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
@@ -15,8 +16,8 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public Optional<Optional<Usuario>> finOneById(Long id){
-        Optional<Usuario> usuario = usuarioRepository.findById(id);
+    public Optional<Usuario> findOneById(Long id){
+        Usuario usuario = usuarioRepository.findById(id).get();
         return Optional.of(usuario);
     }
 
@@ -30,8 +31,9 @@ public class UsuarioService {
     }
 
     public Usuario update(Long id,Usuario usuario){
-        Usuario usuarioUpdate = usuarioRepository.findById(id).get();
-        if(usuarioUpdate == null) return null;
+        Optional<Usuario> usuarioExists = usuarioRepository.findById(id);
+        if(usuarioExists.isEmpty()) return null;
+        Usuario usuarioUpdate = usuarioExists.get();
         if(usuario.getEmail() != null) usuarioUpdate.setEmail(usuario.getEmail());
         if(usuario.getSenha() != null) usuarioUpdate.setSenha(usuario.getSenha());
         return usuarioRepository.save(usuarioUpdate);
@@ -42,7 +44,7 @@ public class UsuarioService {
             usuarioRepository.deleteById(id);
             return ResponseEntity.ok(true);
         }catch (Exception e){
-            return (ResponseEntity<?>) ResponseEntity.status(500);
+            return (ResponseEntity<?>) ResponseEntity.status(400);
         }
     }
 }
