@@ -1,26 +1,26 @@
 package br.com.unialfa.univagas.usuario.domain;
 
-import javax.persistence.*;
+import com.sun.istack.NotNull;
 
-import lombok.*;
+import javax.persistence.*;
 import java.io.Serializable;
 //import java.util.list;
 
 //anotations lombok
-@Getter
-@Setter
-@EqualsAndHashCode
+//@Getter
+//@Setter
+//@EqualsAndHashCode
 //anotations jpa
 @Entity
-
-
-
+@Table(name = "usuario")
 public class Usuario implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @JoinColumn(unique = true,nullable = false)
     private String  email;
+    @JoinColumn(nullable= false)
     private String senha;
 
     public Usuario() {

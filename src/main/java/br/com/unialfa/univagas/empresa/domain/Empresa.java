@@ -1,24 +1,23 @@
 package br.com.unialfa.univagas.empresa.domain;
 
-import java.io.Serializable;
-import javax.persistence.*;
-import javax.persistence.OneToOne;
 import br.com.unialfa.univagas.endereco.domain.Endereco;
 import br.com.unialfa.univagas.usuario.domain.Usuario;
-import lombok.*;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 //import java.util.list;
 
 //anotations lombok
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@EqualsAndHashCode
 
 //anotations jpa
 @Entity
-
+@Table(name = "empresa")
 public class Empresa implements Serializable {
 
     @Id
@@ -28,6 +27,7 @@ public class Empresa implements Serializable {
     private String nomefantasia;
     private String cnpj;
     @OneToOne
+    @JoinColumn(name = "endereco_id")
     private Endereco endereco;
     @OneToOne
     private Usuario usuario;

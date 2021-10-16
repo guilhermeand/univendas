@@ -1,13 +1,20 @@
 package br.com.unialfa.univagas.empresa.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import br.com.unialfa.univagas.candidatura.domain.Candidatura;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.ColumnDefault;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class Vaga {
-
+@Entity
+@Table(name = "vaga")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public abstract class Vaga  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -17,21 +24,69 @@ public class Vaga {
     private String salario;
     private String carga_horaria;
     private String beneficios;
-    private Boolean isFinalizada;
     private Date termina_em;
+    @ColumnDefault("false")
+    private Boolean isFinalizada;
+    @ColumnDefault("false")
+    private Boolean isSupervisionada;
+    @ColumnDefault("false")
+    private Boolean isAprovada;
+    @ColumnDefault("false")
+    private Boolean isVisivel;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "vaga")
+    private List<Candidatura> candidaturas;
 
     public Vaga() {
     }
 
-    public Vaga(long id, Empresa empresa, String descricao, String salario, String carga_horaria, String beneficios, Boolean isFinalizada, Date termina_em) {
+    public Vaga(long id, Empresa empresa, String descricao, String salario, String carga_horaria, String beneficios, Date termina_em, Boolean isFinalizada, Boolean isSupervisionada, Boolean isAprovada, Boolean isVisivel, List<Candidatura> candidaturas) {
         this.id = id;
         this.empresa = empresa;
         this.descricao = descricao;
         this.salario = salario;
         this.carga_horaria = carga_horaria;
         this.beneficios = beneficios;
-        this.isFinalizada = isFinalizada;
         this.termina_em = termina_em;
+        this.isFinalizada = isFinalizada;
+        this.isSupervisionada = isSupervisionada;
+        this.isAprovada = isAprovada;
+        this.isVisivel = isVisivel;
+        this.candidaturas = candidaturas;
+    }
+
+    public Boolean getSupervisionada() {
+        return isSupervisionada;
+    }
+
+    public void setSupervisionada(Boolean supervisionada) {
+        isSupervisionada = supervisionada;
+    }
+
+    public Boolean getAprovada() {
+        return isAprovada;
+    }
+
+    public void setAprovada(Boolean aprovada) {
+        isAprovada = aprovada;
+    }
+
+    public Boolean getVisivel() {
+        return isVisivel;
+    }
+
+    public void setVisivel(Boolean visivel) {
+        isVisivel = visivel;
+    }
+
+    public List<Candidatura> getCandidaturas() {
+        return candidaturas;
+    }
+
+    public void setCandidaturas(List<Candidatura> candidaturas) {
+        this.candidaturas = candidaturas;
     }
 
     public long getId() {

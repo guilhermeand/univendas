@@ -1,23 +1,21 @@
 package br.com.unialfa.univagas.endereco.domain;
 
-import br.com.unialfa.univagas.candidato.domain.Curriculo;
-import lombok.*;
+import br.com.unialfa.univagas.candidato.domain.Candidato;
+import br.com.unialfa.univagas.empresa.domain.Empresa;
+
 import javax.persistence.*;
-import javax.persistence.OneToOne;
 import java.io.Serializable;
 
 //anotations lombok
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@EqualsAndHashCode
 
 //anotations jpa
 @Entity
-
-
-
+@Table(name = "endereco")
 public class Endereco implements Serializable {
 
     @Id
@@ -30,10 +28,24 @@ public class Endereco implements Serializable {
     private String estado;
     private String pais;
     private String cep;
+    @OneToOne(mappedBy = "endereco")
+    private Empresa empresa;
+    @OneToOne(mappedBy = "endereco")
+    private Candidato candidato;
 
+    public Endereco() {
+    }
 
-    // CONSTRUCTOR public Curriculo() {
-    //}
+    public Endereco(long id, String logradouro, String complemento, String bairro, String cidade, String estado, String pais, String cep) {
+        this.id = id;
+        this.logradouro = logradouro;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.pais = pais;
+        this.cep = cep;
+    }
 
     public long getId() {
         return id;
@@ -98,7 +110,4 @@ public class Endereco implements Serializable {
     public void setCep(String cep) {
         this.cep = cep;
     }
-
-    @OneToOne
-    private Curriculo curriculo;
 }
