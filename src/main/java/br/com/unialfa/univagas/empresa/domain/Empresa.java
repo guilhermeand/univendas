@@ -26,7 +26,7 @@ public class Empresa implements Serializable {
     private String razaosocial;
     private String nomefantasia;
     private String cnpj;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
     @OneToOne

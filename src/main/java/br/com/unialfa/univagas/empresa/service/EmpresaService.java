@@ -34,28 +34,19 @@ public class EmpresaService {
         return empresas;
     }
 
-    public Empresa save(Long endereco_id, Long usuario_id, Empresa empresa){
-        Optional<Endereco> endereco = enderecoService.findOneById(endereco_id);
-        if(endereco.isEmpty()) return null;
-        Optional<Usuario> usuario = usuarioService.findOneById(usuario_id);
-        if(usuario.isEmpty()) return null;
-        empresa.setUsuario(usuario.get());
-        empresa.setEndereco(endereco.get());
+    public Empresa save(Empresa empresa){
         return empresaRepository.save(empresa);
     }
 
-    public Empresa update(Long id,Empresa empresa,Long endereco_id){
+    public Empresa update(Long id,Empresa empresa){
         Optional<Empresa> candidatoCheck = empresaRepository.findById(id);
         if(candidatoCheck.isEmpty()) return null;
         Empresa candidatoUpdate = candidatoCheck.get();
-        if(endereco_id != null) {
-            Optional<Endereco> endereco = enderecoService.findOneById(endereco_id);
-            candidatoUpdate.setEndereco(endereco.get());
-        };
         if(empresa.getCnpj() != null) candidatoUpdate.setCnpj(empresa.getCnpj());
         if(empresa.getEndereco() != null) candidatoUpdate.setEndereco(empresa.getEndereco());
         if(empresa.getNomefantasia() != null) candidatoUpdate.setNomefantasia(empresa.getNomefantasia());
         if(empresa.getRazaosocial() != null) candidatoUpdate.setRazaosocial(empresa.getRazaosocial());
+        if(empresa.getUsuario() != null) candidatoUpdate.setUsuario(empresa.getUsuario());
         return empresaRepository.save(candidatoUpdate);
     }
 

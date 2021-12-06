@@ -1,6 +1,5 @@
 package br.com.unialfa.univagas.endereco.service;
 
-import br.com.unialfa.univagas.candidato.domain.Curriculo;
 import br.com.unialfa.univagas.endereco.domain.Endereco;
 import br.com.unialfa.univagas.endereco.repository.EnderecoRepository;
 import org.springframework.http.ResponseEntity;

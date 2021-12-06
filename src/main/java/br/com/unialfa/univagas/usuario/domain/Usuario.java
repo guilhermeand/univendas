@@ -1,8 +1,15 @@
 package br.com.unialfa.univagas.usuario.domain;
 
-import com.sun.istack.NotNull;
+import br.com.unialfa.univagas.candidato.domain.Candidato;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.io.Serializable;
 //import java.util.list;
 
@@ -13,22 +20,28 @@ import java.io.Serializable;
 //anotations jpa
 @Entity
 @Table(name = "usuario")
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @JoinColumn(unique = true,nullable = false)
-    private String  email;
-    @JoinColumn(nullable= false)
+    @JoinColumn(unique = true, nullable = false)
+    private String email;
+    @JoinColumn(nullable = false)
     private String senha;
+    @JoinColumn(nullable = false)
+    private String username;
+    @OneToOne(mappedBy = "usuario", cascade = {CascadeType.REMOVE})
+    private Candidato candidato;
 
     public Usuario() {
     }
-    public Usuario(long id, String email, String senha){
+
+    public Usuario(long id, String email, String senha, String username) {
         this.email = email;
         this.senha = senha;
         this.id = id;
+        this.username = username;
     }
 
     public long getId() {
@@ -55,4 +68,19 @@ public class Usuario implements Serializable{
         this.senha = senha;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Candidato getCandidato() {
+        return candidato;
+    }
+
+    public void setCandidato(Candidato candidato) {
+        this.candidato = candidato;
+    }
 }

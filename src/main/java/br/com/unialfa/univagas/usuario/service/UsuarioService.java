@@ -36,6 +36,7 @@ public class UsuarioService {
         Usuario usuarioUpdate = usuarioExists.get();
         if(usuario.getEmail() != null) usuarioUpdate.setEmail(usuario.getEmail());
         if(usuario.getSenha() != null) usuarioUpdate.setSenha(usuario.getSenha());
+        if(usuario.getUsername() != null) usuarioUpdate.setUsername(usuario.getUsername());
         return usuarioRepository.save(usuarioUpdate);
     }
 

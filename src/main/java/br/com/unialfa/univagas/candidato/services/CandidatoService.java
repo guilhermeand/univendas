@@ -37,27 +37,18 @@ public class CandidatoService {
         return candidatos;
     }
 
-    public Candidato save(Long endereco_id, Long usuario_id, Candidato candidato){
-        Optional<Endereco> endereco = enderecoService.findOneById(endereco_id);
-        if(endereco.isEmpty()) return null;
-        Optional<Usuario> usuario = usuarioService.findOneById(usuario_id);
-        if(usuario.isEmpty()) return null;
-        candidato.setUsuario(usuario.get());
-        candidato.setEndereco(endereco.get());
+    public Candidato save(Candidato candidato){
         return candidatoRepository.save(candidato);
     }
 
-    public Candidato update(Long id,Candidato candidato,Long endereco_id){
+    public Candidato update(Long id,Candidato candidato){
         Optional<Candidato> candidatoCheck = candidatoRepository.findById(id);
         if(candidatoCheck.isEmpty()) return null;
         Candidato candidatoUpdate = candidatoCheck.get();
-        if(endereco_id != null) {
-            Optional<Endereco> endereco = enderecoService.findOneById(endereco_id);
-            candidatoUpdate.setEndereco(endereco.get());
-        };
-        if(candidato.getCpf() != null && validaCPF(candidato.getCpf())) candidatoUpdate.setCpf(candidato.getCpf());
+        if(candidato.getCpf() != null) candidatoUpdate.setCpf(candidato.getCpf());
         if(candidato.getNome() != null) candidatoUpdate.setNome(candidato.getNome());
         if(candidato.getDataNascimento() != null) candidatoUpdate.setDataNascimento(candidato.getDataNascimento());
+        if(candidato.getUsuario() != null) candidatoUpdate.setUsuario(candidato.getUsuario());
         return candidatoRepository.save(candidatoUpdate);
     }
 

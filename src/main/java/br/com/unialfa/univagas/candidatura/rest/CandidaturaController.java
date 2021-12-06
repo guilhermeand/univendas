@@ -1,9 +1,9 @@
 package br.com.unialfa.univagas.candidatura.rest;
 
 import br.com.unialfa.univagas.candidato.domain.Candidato;
-import br.com.unialfa.univagas.candidato.domain.Curriculo;
+import br.com.unialfa.univagas.candidato.domain.CurriculoCandidato;
 import br.com.unialfa.univagas.candidato.services.CandidatoService;
-import br.com.unialfa.univagas.candidato.services.CurriculoService;
+import br.com.unialfa.univagas.candidato.services.CandidatoCurriculoService;
 import br.com.unialfa.univagas.candidatura.domain.Candidatura;
 import br.com.unialfa.univagas.candidatura.service.CandidaturaService;
 import br.com.unialfa.univagas.empresa.domain.Emprego;
@@ -15,7 +15,6 @@ import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RepositoryRestController
@@ -24,15 +23,15 @@ public class CandidaturaController {
 
     private final CandidaturaService candidaturaService;
     private final CandidatoService candidatoService;
-    private final CurriculoService curriculoService;
+    private final CandidatoCurriculoService candidatoCurriculoService;
     private final EstagioService estagioService;
     private final EmpregoService empregoService;
 
     @Autowired
-    public CandidaturaController(CandidaturaService candidaturaService, CandidatoService candidatoService, CurriculoService curriculoService, EstagioService estagioService, EmpregoService empregoService) {
+    public CandidaturaController(CandidaturaService candidaturaService, CandidatoService candidatoService, CandidatoCurriculoService candidatoCurriculoService, EstagioService estagioService, EmpregoService empregoService) {
         this.candidaturaService = candidaturaService;
         this.candidatoService = candidatoService;
-        this.curriculoService = curriculoService;
+        this.candidatoCurriculoService = candidatoCurriculoService;
         this.estagioService = estagioService;
         this.empregoService = empregoService;
     }
@@ -59,7 +58,7 @@ public class CandidaturaController {
         Optional<Candidato> candidato = candidatoService.findOneById(candidato_id);
         if (candidato.isEmpty()) return (ResponseEntity<?>) ResponseEntity.status(400).body("candidato nao encontrado");
         if (!candidatoService.validarMenorOuIgualTresCandidaturas(candidato.get())) return (ResponseEntity<?>) ResponseEntity.status(400).body("numero de vagas maximo atingido para o candidato");
-        Optional<Curriculo> curriculo = curriculoService.findOneById(curriculo_id);
+        Optional<CurriculoCandidato> curriculo = candidatoCurriculoService.findOneById(curriculo_id);
         if(curriculo.isEmpty()) return (ResponseEntity<?>) ResponseEntity.status(400).body("curriculo nao encontrado");
         Candidatura candidatura;
         switch (vaga_tipo){

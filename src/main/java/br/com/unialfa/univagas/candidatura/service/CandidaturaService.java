@@ -1,13 +1,11 @@
 package br.com.unialfa.univagas.candidatura.service;
 
 import br.com.unialfa.univagas.candidato.domain.Candidato;
-import br.com.unialfa.univagas.candidato.domain.Curriculo;
+import br.com.unialfa.univagas.candidato.domain.CurriculoCandidato;
 import br.com.unialfa.univagas.candidato.services.CandidatoService;
-import br.com.unialfa.univagas.candidato.services.CurriculoService;
+import br.com.unialfa.univagas.candidato.services.CandidatoCurriculoService;
 import br.com.unialfa.univagas.candidatura.domain.Candidatura;
 import br.com.unialfa.univagas.candidatura.repository.CandidaturaRepository;
-import br.com.unialfa.univagas.empresa.domain.Emprego;
-import br.com.unialfa.univagas.empresa.domain.Estagio;
 import br.com.unialfa.univagas.empresa.domain.Vaga;
 import br.com.unialfa.univagas.empresa.service.EmpregoService;
 import br.com.unialfa.univagas.empresa.service.EstagioService;
@@ -20,14 +18,14 @@ import java.time.*;
 public class CandidaturaService {
 
     private final CandidaturaRepository candidaturaRepository;
-    private final CurriculoService curriculoService;
+    private final CandidatoCurriculoService candidatoCurriculoService;
     private final CandidatoService candidatoService;
     private final EstagioService estagioService;
     private final EmpregoService empregoService;
 
-    public CandidaturaService(CandidaturaRepository candidaturaRepository, CurriculoService curriculoService, CandidatoService candidatoService, EstagioService estagioService, EmpregoService empregoService) {
+    public CandidaturaService(CandidaturaRepository candidaturaRepository, CandidatoCurriculoService candidatoCurriculoService, CandidatoService candidatoService, EstagioService estagioService, EmpregoService empregoService) {
         this.candidaturaRepository = candidaturaRepository;
-        this.curriculoService = curriculoService;
+        this.candidatoCurriculoService = candidatoCurriculoService;
         this.candidatoService = candidatoService;
         this.estagioService = estagioService;
         this.empregoService = empregoService;
@@ -43,10 +41,10 @@ public class CandidaturaService {
         return candidatos;
     }
 
-    public Candidatura save(Vaga vaga, String vaga_tipo,Candidato candidato, Curriculo curriculo){
+    public Candidatura save(Vaga vaga, String vaga_tipo,Candidato candidato, CurriculoCandidato curriculoCandidato){
         Candidatura candidatura = new Candidatura();
         candidatura.setCandidato(candidato);
-        candidatura.setCurriculo(curriculo);
+        candidatura.setCurriculo(curriculoCandidato);
         candidatura.setAplicado_as(LocalDateTime.now());
         candidatura.setVaga(vaga);
         candidatura.setVaga_tipo(vaga_tipo);
@@ -79,7 +77,7 @@ public class CandidaturaService {
         if(candidaturaCheck.isEmpty()) return null;
         Candidatura candidaturaUpdate = candidaturaCheck.get();
         if(curriculo_id != null) {
-            Optional<Curriculo> curriculo = curriculoService.findOneById(curriculo_id);
+            Optional<CurriculoCandidato> curriculo = candidatoCurriculoService.findOneById(curriculo_id);
             if (curriculo.isEmpty()) return null;
             candidaturaUpdate.setCurriculo(curriculo.get());
         };

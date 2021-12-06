@@ -39,11 +39,11 @@ public class EmpresaController {
         }
     }
 
-    @PostMapping(path = "/usuario/{usuario_id}/endereco/{endereco_id}/save")
+    @PostMapping
     public @ResponseBody
-    ResponseEntity<?> save(@RequestBody Empresa empresa,@PathVariable Long usuario_id,@PathVariable Long endereco_id){
+    ResponseEntity<?> save(@RequestBody Empresa empresa){
 
-        empresa = empresaService.save(endereco_id,usuario_id,empresa);
+        empresa = empresaService.save(empresa);
         if(empresa != null) {
             return ResponseEntity.ok(empresa);
         }else{
@@ -52,10 +52,10 @@ public class EmpresaController {
 
     }
 
-    @PatchMapping(path = "/{id}/endereco/{endereco_id}/update")
+    @PatchMapping(path = "/{id}")
     public @ResponseBody
-    ResponseEntity<?> update(@RequestBody Empresa empresa, @PathVariable Long id,@PathVariable Long endereco_id){
-        empresa = empresaService.update(id,empresa,endereco_id);
+    ResponseEntity<?> update(@RequestBody Empresa empresa, @PathVariable Long id){
+        empresa = empresaService.update(id,empresa);
         if(empresa != null) {
             return ResponseEntity.ok(empresa);
         }else{

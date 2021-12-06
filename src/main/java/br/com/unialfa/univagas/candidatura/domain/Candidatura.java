@@ -1,9 +1,8 @@
 package br.com.unialfa.univagas.candidatura.domain;
 
 import br.com.unialfa.univagas.candidato.domain.Candidato;
-import br.com.unialfa.univagas.candidato.domain.Curriculo;
+import br.com.unialfa.univagas.candidato.domain.CurriculoCandidato;
 import br.com.unialfa.univagas.empresa.domain.Vaga;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -30,7 +29,7 @@ public class Candidatura implements Serializable{
     @JoinColumn(name = "curriculo_id",nullable = false)
     @Fetch(FetchMode.JOIN)
     @JsonIdentityReference(alwaysAsId=true)
-    private Curriculo curriculo;
+    private CurriculoCandidato curriculoCandidato;
     private String vaga_tipo;
 
     private LocalDateTime aplicado_as;
@@ -42,10 +41,10 @@ public class Candidatura implements Serializable{
 
     public Candidatura() {
     }
-    public Candidatura(long id, Vaga vaga, Curriculo curriculo, String vaga_tipo, LocalDateTime aplicado_as, String feedback, Boolean aprovado, Candidato candidato) {
+    public Candidatura(long id, Vaga vaga, CurriculoCandidato curriculoCandidato, String vaga_tipo, LocalDateTime aplicado_as, String feedback, Boolean aprovado, Candidato candidato) {
         this.id = id;
         this.vaga = vaga;
-        this.curriculo = curriculo;
+        this.curriculoCandidato = curriculoCandidato;
         this.vaga_tipo = vaga_tipo;
         this.aplicado_as = aplicado_as;
         this.feedback = feedback;
@@ -86,12 +85,12 @@ public class Candidatura implements Serializable{
         this.vaga = vaga;
     }
 
-    public Curriculo getCurriculo() {
-        return curriculo;
+    public CurriculoCandidato getCurriculo() {
+        return curriculoCandidato;
     }
 
-    public void setCurriculo(Curriculo curriculo) {
-        this.curriculo = curriculo;
+    public void setCurriculo(CurriculoCandidato curriculoCandidato) {
+        this.curriculoCandidato = curriculoCandidato;
     }
 
     public LocalDateTime getAplicado_as() {
