@@ -1,0 +1,55 @@
+<div class="btn-row mb-15">
+  <h2 style="margin: 0 auto 0 0">Usuários cadastrados</h2>
+  <button mat-flat-button color="primary" routerLink="new" *ngIf="users.length > 0">Novo Usuário</button>
+</div>
+
+<mat-table [dataSource]="users">
+
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="username">
+    <mat-header-cell *matHeaderCellDef>Nome do usuário</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.username}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <div>
+        <button mat-icon-button color="primary" (click)="edit(element.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="delete(element.id)">
+          <mat-spinner diameter="20" *ngIf="removingData"></mat-spinner>
+          <mat-icon *ngIf="!removingData">delete</mat-icon>
+        </button>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <div *matNoDataRow class="no-data">
+    <ng-container *ngIf="!loadingData">
+      <div>Ainda não há nenhum usuário cadastrado.</div>
+      <div class="mt-15">
+        <button mat-flat-button color="primary" routerLink="new">Cadastrar Novo</button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="loadingData">
+      <div>Aguarde enquanto busco os usuários.</div>
+      <div class="mt-15">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+    </ng-container>
+  </div>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

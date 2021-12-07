@@ -1,0 +1,45 @@
+.container-sidenav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+.sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav {
+  width: 250px;
+  border: none;
+}
+
+.menu {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.menu mat-icon {
+  font-size: 30px;
+  color: white;
+}
+
+.sidenav-header {
+  height: 64px;
+  width: inherit;
+  background: #673ab7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+}
+
+main {
+  padding: 20px;
+}

@@ -1,0 +1,65 @@
+<div class="btn-row mb-15">
+  <h2 style="margin: 0 auto 0 0">Candidatos cadastrados</h2>
+  <button mat-flat-button color="primary" routerLink="new" *ngIf="users.length > 0">Novo Candidato</button>
+</div>
+
+<mat-table [dataSource]="users">
+
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nome">
+    <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.nome}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="usuario">
+    <mat-header-cell *matHeaderCellDef>Usuário</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.usuario.username}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="cpf">
+    <mat-header-cell *matHeaderCellDef>Cpf</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.cpf | mask: '000.000.000-00'}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="endereco">
+    <mat-header-cell *matHeaderCellDef>Endereco</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.endereco.logradouro}}, {{element.endereco.complemento}}, {{element.endereco.bairro}}, {{element.endereco.cidade}}/{{element.endereco.estado}} - {{element.endereco.pais}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <div>
+        <button mat-icon-button color="primary" (click)="edit(element.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="delete(element.id)">
+          <mat-spinner diameter="20" *ngIf="removingData"></mat-spinner>
+          <mat-icon *ngIf="!removingData">delete</mat-icon>
+        </button>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <div *matNoDataRow class="no-data">
+    <ng-container *ngIf="!loadingData">
+      <div>Ainda não há nenhum candidato cadastrado.</div>
+      <div class="mt-15">
+        <button mat-flat-button color="primary" routerLink="new">Cadastrar Novo</button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="loadingData">
+      <div>Aguarde enquanto busco os candidatos cadastrados.</div>
+      <div class="mt-15">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+    </ng-container>
+  </div>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

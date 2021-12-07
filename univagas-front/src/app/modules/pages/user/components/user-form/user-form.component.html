@@ -1,0 +1,28 @@
+<div class="form-div">
+  <h2>Cadastro de usuário</h2>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" placeholder="Preencha o nome do usuário" required autocomplete/>
+      <mat-error>Campo obrigatório</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>E-mail</mat-label>
+      <input matInput formControlName="email" placeholder="univagas@mail.com.br" required type="email" autocomplete/>
+      <mat-error *ngIf="form.get('email')?.hasError('required')">Campo obrigatório</mat-error>
+      <mat-error *ngIf="form.get('email')?.hasError('email')">E-mail com formato inválido</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Senha</mat-label>
+      <input matInput formControlName="senha" placeholder="Insira sua senha" required type="password" autocomplete="false"/>
+      <mat-error>Campo obrigatório</mat-error>
+    </mat-form-field>
+    <div class="btn-row">
+      <button mat-stroked-button color="warn" style="min-width: 100px">Cancelar</button>
+      <button mat-flat-button color="primary" style="margin-left: 15px; min-width: 100px" (click)="!id || id.length == 0 ? save() : update()">
+        <span *ngIf="!isSaving">Salvar</span>
+        <mat-spinner *ngIf="isSaving" diameter="20" color="accent">Salvar</mat-spinner>
+      </button>
+    </div>
+  </form>
+</div>

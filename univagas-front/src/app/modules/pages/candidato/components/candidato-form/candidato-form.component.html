@@ -1,0 +1,85 @@
+<div>
+  <h2>Cadastro de candidato</h2>
+  <form [formGroup]="form">
+    <div class="row">
+      <mat-form-field class="col-4">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome" placeholder="Insira o nome do candidato" required autocomplete/>
+        <mat-error>Campo obrigatório</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-4">
+        <mat-label>CPF</mat-label>
+        <input matInput formControlName="cpf" placeholder="000.000.000-00" mask="000.000.000-00" required autocomplete/>
+        <mat-error>Campo obrigatório</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-4">
+        <mat-label>Data de nascimento</mat-label>
+        <input matInput [matDatepicker]="dtPicker" [matDatepickerFilter]="dataNascimentoFilter"
+               formControlName="dataNascimento"
+               placeholder="Data de Nascimento"/>
+        <mat-datepicker-toggle matSuffix [for]="dtPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dtPicker></mat-datepicker>
+        <mat-error *ngIf="!form.get('dataNascimento')?.hasError('matDatepickerFilter')">Formato de data inválido
+        </mat-error>
+        <mat-error *ngIf="form.get('dataNascimento')?.hasError('matDatepickerFilter')">A data não deve ser maior que a
+          data atual
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field formArrayName="usuario" class="col-3">
+        <mat-label>Selecione um usuário para vincular</mat-label>
+        <mat-select formControlName="id" required [compareWith]="userCompareWith">
+          <mat-option *ngFor="let user of users" [value]="user.id">
+            {{user.username}}
+          </mat-option>
+        </mat-select>
+        <mat-error>Selecione o usuário do candidato</mat-error>
+      </mat-form-field>
+      <ng-container formArrayName="endereco">
+        <mat-form-field class="col-3">
+          <mat-label>Logradouro</mat-label>
+          <input matInput formControlName="logradouro" required autocomplete/>
+          <mat-error>Campo obrigatório</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-3">
+          <mat-label>Complemento</mat-label>
+          <input matInput formControlName="complemento" required autocomplete/>
+          <mat-error>Campo obrigatório</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-3">
+          <mat-label>Bairro</mat-label>
+          <input matInput formControlName="bairro" required autocomplete/>
+          <mat-error>Campo obrigatório</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-3">
+          <mat-label>Cidade</mat-label>
+          <input matInput formControlName="cidade" required autocomplete/>
+          <mat-error>Campo obrigatório</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-3">
+          <mat-label>Estado</mat-label>
+          <input matInput formControlName="estado" required autocomplete/>
+          <mat-error>Campo obrigatório</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-3">
+          <mat-label>País</mat-label>
+          <input matInput formControlName="pais" required autocomplete/>
+          <mat-error>Campo obrigatório</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-3">
+          <mat-label>CEP</mat-label>
+          <input matInput formControlName="cep" placeholder="00.000-000" mask="00.000-000" required autocomplete/>
+          <mat-error>Campo obrigatório</mat-error>
+        </mat-form-field>
+      </ng-container>
+    </div>
+    <div class="btn-row">
+      <button mat-stroked-button color="warn" style="min-width: 100px">Cancelar</button>
+      <button mat-flat-button color="primary" style="margin-left: 15px; min-width: 100px" (click)="!id || id.length == 0 ? save() : update()">
+        <span *ngIf="!isSaving">Salvar</span>
+        <mat-spinner *ngIf="isSaving" diameter="20" color="accent">Salvar</mat-spinner>
+      </button>
+    </div>
+  </form>
+</div>

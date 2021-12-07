@@ -1,0 +1,70 @@
+<div class="btn-row mb-15">
+  <h2 style="margin: 0 auto 0 0">Empresas cadastradas</h2>
+  <button mat-flat-button color="primary" routerLink="new" *ngIf="users.length > 0">Nova Empresa</button>
+</div>
+
+<mat-table [dataSource]="users">
+
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>Código</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="razaosocial">
+    <mat-header-cell *matHeaderCellDef>Razão Social</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.razaosocial}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nomefantasia">
+    <mat-header-cell *matHeaderCellDef>Nome Fantasia</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.nomefantasia}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="usuario">
+    <mat-header-cell *matHeaderCellDef>Usuário</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.usuario.username}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="cnpj">
+    <mat-header-cell *matHeaderCellDef>CNPJ</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.cnpj | mask: '00.000.000/0001-00'}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="endereco">
+    <mat-header-cell *matHeaderCellDef>Endereco</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.endereco.logradouro}}, {{element.endereco.complemento}}, {{element.endereco.bairro}}, {{element.endereco.cidade}}/{{element.endereco.estado}} - {{element.endereco.pais}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>Ações</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <div>
+        <button mat-icon-button color="primary" (click)="edit(element.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="delete(element.id)">
+          <mat-spinner diameter="20" *ngIf="removingData"></mat-spinner>
+          <mat-icon *ngIf="!removingData">delete</mat-icon>
+        </button>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <div *matNoDataRow class="no-data">
+    <ng-container *ngIf="!loadingData">
+      <div>Ainda não há nenhuma empresa cadastrada.</div>
+      <div class="mt-15">
+        <button mat-flat-button color="primary" routerLink="new">Cadastrar Novo</button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="loadingData">
+      <div>Aguarde enquanto busco as empresas cadastradas.</div>
+      <div class="mt-15">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+    </ng-container>
+  </div>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
